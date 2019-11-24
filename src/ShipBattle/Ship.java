@@ -14,6 +14,7 @@ List<Point> listCoordinate=new ArrayList<>();
 
     public Ship(int trubCount, String name,Point startPoint,boolean isHorisontal,int[][] field) {
         this.trubCount = trubCount;
+        //sdffggfgfgfgfg
         this.name = name;
         if(field[startPoint.y][startPoint.x]!=0){
             System.out.println("Error #1 make ship !");
