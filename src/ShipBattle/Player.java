@@ -11,18 +11,28 @@ public class Player {
     public Player(String nikName) {
         NikName = nikName;
         ArrayList<Integer> ships=new ArrayList<>();
-        Collections.addAll(ships,4,3,3,2,2,2,1,1,1,1);
+        Collections.addAll(ships,4,3);
         for (Integer temp:ships) {
             randomizer(temp);
         }
+        System.out.println("Ваша эскадра размещена !");
 
 
     }
-    shortResult atack(Player enemy,Point coordinata){
+    shortResult atack(Player enemy){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(NikName+"your time to do this");
+        System.out.println("tipe x coords");
+        int x= scanner.nextInt();
+        System.out.println("tipe y coords");
+        int y= scanner.nextInt();
+        Point coordinata=new Point(x,y);
         return enemy.save(coordinata);
     }
 
-
+    public static void main(String[] args) {
+        Player player1 = new Player("Cergey");
+    }
     shortResult save(Point pointShort){
         shortResult result = null;
        int statePoint=myBoard[pointShort.y][pointShort.x];
@@ -31,27 +41,33 @@ public class Player {
 result=shortResult.Мимо;
        } else {
            Ship myCurrentShip=searchShip(pointShort);
-           result=myCurrentShip.getStatePastShort(pointShort);
+          // result=myCurrentShip.getStatePastShort(pointShort);
        }
         return result;
     }
 
     private Ship searchShip(Point pointShort) {
-
+return null;
     }
 
-    private void randomizer(Integer temp) {
-        Random random = new Random();
-       String keys= "abcdefgjkl";
-char randomRow= keys.charAt(random.nextInt(9));
-if(sum(myBoard.get(randomRow))==0){
+    private void randomizer(int trubCount) {
+        Scanner scan = new Scanner(System.in );
+                 viewField(myBoard);
+        System.out.println("Корабль на "+trubCount+" трубы.");
+                 System.out.println("Введите координату х стартовой точки -");
+        int x= scan.nextInt();
+        System.out.println("Введите координату у стартовой точки -");
+        int y= scan.nextInt();
+        System.out.println("Корабль будет размещен по горизонтали ?");
+        boolean horisontal= scan.nextBoolean();
+        new Ship(trubCount,"name",new Point(x,y),horisontal,myBoard );
+    }
 
-        for(int i=0;i<10;i++){
-
+    private void viewField(int[][] board) {
+        for (int[] temp:board){
+            System.out.println(Arrays.toString(temp));
         }
 
-
-}
     }
 
     private int sum(int[] ints) {

@@ -19,33 +19,49 @@ List<Point> listCoordinate=new ArrayList<>();
         if(field[startPoint.y][startPoint.x]!=0){
             System.out.println("Error #1 make ship !");
         }
-        if(checkPlace(isHorisontal,trubCount)){
-            if(isHorisontal==true){
-                for(int i=0;i<trubCount;i++){
+//        if(checkPlace(isHorisontal,startPoint,trubCount,field)){
+//            if(isHorisontal==true){
+//                for(int i=0;i<trubCount;i++){
+//
+//                }
+//            }else{
+//                for(int i=0;i<trubCount;i++){
+//
+//                }
+//            }
+//        }
+        if(isHorisontal==false){
+            for(int i=0;i<trubCount;i++){
+                field[startPoint.y+i][startPoint.x]=1;
+                Point temp=new Point(startPoint.x,startPoint.y+i);
+                listCoordinate.add(temp);
 
-                }
-            }else{
-                for(int i=0;i<trubCount;i++){
-
-                }
+            }
+        }else{
+            for(int i=0; i<trubCount;i++){
+                field[startPoint.y] [startPoint.x+i]=1;
+                Point temp=new Point(startPoint.x+i,startPoint.y);
+                listCoordinate.add(temp);
             }
         }
     }
+
+
 
     @Override
     public String toString() {
         return "Ship{" +
                 "trubCount=" + trubCount +
                 ", name='" + name + '\'' +
-                ", shipPlace=" + shipPlace +
+                ", shipPlace=" + //shipPlace +
                 '}';
     }
 
 }
  class Point{
     int x;
-     char y;
-     public Point(int x, char y) {
+     int y;
+     public Point(int x, int y) {
          this.x = x;
          this.y = y;
      }
